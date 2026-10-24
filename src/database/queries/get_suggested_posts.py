@@ -2,8 +2,16 @@ from src.database.models import SuggestedPostORM
 from src.database.engine import session_factory
 from sqlalchemy import select
 
-def select_suggested_posts(limit: int):
+def select_suggested_posts():
     with session_factory() as session:
-        query = select(SuggestedPostORM).limit(limit)
-        result = session.scalars(query).all()
-        return result
+        query = select(SuggestedPostORM)
+        result = session.scalars(query).first()
+        if result is None:
+            return {}
+        
+        post = {
+            "id": result.post_id,
+            "description": result.title,
+            "author": result.author
+        }
+        return post

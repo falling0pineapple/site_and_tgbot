@@ -9,5 +9,6 @@ class SuggestedPostORM(Base):
     
     post_id: Mapped[int] = mapped_column(primary_key=True)
     title: Mapped[str] = mapped_column(VARCHAR(100))
+    author: Mapped[str | None] = mapped_column()
     
     

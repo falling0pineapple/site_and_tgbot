@@ -8,7 +8,7 @@ def is_admin(current_user_id: int) -> bool:
     
     
     
-def get_suggested_posts_SERVICE(current_user_id: int, limit: int):
+def get_suggested_posts_SERVICE(current_user_id: int):
     if is_admin(current_user_id):
-        return select_suggested_posts(limit)
+        return select_suggested_posts()
     return "None"
