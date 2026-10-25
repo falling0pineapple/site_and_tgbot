@@ -10,7 +10,7 @@ def select_suggested_posts():
             return {}
         
         post = {
-            "id": result.post_id,
+            "post_id": result.post_id,
             "description": result.title,
             "author": result.author
         }
