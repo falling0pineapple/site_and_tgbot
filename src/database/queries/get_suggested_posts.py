@@ -7,7 +7,7 @@ def select_suggested_posts():
         query = select(SuggestedPostORM)
         result = session.scalars(query).first()
         if result is None:
-            return {}
+            return None
         
         post = {
             "post_id": result.post_id,
