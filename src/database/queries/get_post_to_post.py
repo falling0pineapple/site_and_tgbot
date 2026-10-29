@@ -1,6 +1,6 @@
 from sqlalchemy import select
-from src.database.models import SuggestedPostORM
-from src.database.engine import session_factory
+from database.models import SuggestedPostORM
+from database.engine import session_factory
 
 def get_certain_suggested_post_query(post_id: int):
     with session_factory() as session:

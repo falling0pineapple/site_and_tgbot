@@ -1,6 +1,6 @@
 #here is service for queries to DataBase
-from src.config import settings
-from src.database.queries.get_suggested_posts import select_suggested_posts
+from config import settings
+from database.queries.get_suggested_posts import select_suggested_posts
 
 
 def is_admin(current_user_id: int) -> bool:

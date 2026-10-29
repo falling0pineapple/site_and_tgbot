@@ -1,5 +1,5 @@
-from src.database.models import SuggestedPostORM
-from src.database.engine import session_factory
+from database.models import SuggestedPostORM
+from database.engine import session_factory
 from sqlalchemy import delete
 from sqlalchemy.exc import SQLAlchemyError
 

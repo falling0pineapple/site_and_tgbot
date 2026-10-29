@@ -1,24 +1,28 @@
 import uvicorn 
 import asyncio
-from aiogram import (Bot, Dispatcher as dp)
-from src.config import settings
-from src.tgbot_logic.tg_routers import all_tg_routers
-from src.database.engine import create_base
-from src.apis.site_api.push_post_through_site import router as api_router, app
+from aiogram import Bot, Dispatcher
+from config import settings
+from tgbot_logic.tg_routers import all_tg_routers
+from database.engine import create_base
+from apis.site_api.push_post_through_site import router as api_router, app
 
-bot = Bot(token=settings.BOT_TOKEN.get_secret_value())
-dp.include_router(router for router in all_tg_routers)
+dp = Dispatcher()
+bot = Bot(token=settings.BOT_TOKEN)
+dp.include_routers(*all_tg_routers)
 app.include_router(api_router)
+
 
 async def main_func():
     create_base()
-    config = uvicorn.Config(app, host="127.0.0.1", port=8000)
-    server = uvicorn.Server(config)
+    uvi_conf = uvicorn.Config(app, host="127.0.0.1", port=8000)
+    uvi_serv = uvicorn.Server(uvi_conf)
     await asyncio.gather(
         dp.start_polling(bot),
-        server.serve()
+        uvi_serv.serve()
     )
     
-    
 if __name__ == "__main__":
-    asyncio.run(main_func())
+    try:
+        asyncio.run(main_func())
+    except KeyboardInterrupt:
+        print('Бот просто отключился')

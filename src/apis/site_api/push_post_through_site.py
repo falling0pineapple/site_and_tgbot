@@ -1,6 +1,6 @@
 from fastapi import APIRouter, FastAPI
-from src.apis.site_api.schemas import PostModel
-from src.database.queries.create_post import create_post
+from apis.site_api.schemas import PostModel
+from database.queries.create_post import create_post
 
 app = FastAPI()
 router = APIRouter()

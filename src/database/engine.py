@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import DeclarativeBase, sessionmaker
-from src.config import settings
+from config import settings
 
 
 
@@ -13,5 +13,5 @@ class Base(DeclarativeBase):
 
 #made orm
 def create_base():
-    from src.database import models
+    from database import models
     Base.metadata.create_all(bind=sync_engine)

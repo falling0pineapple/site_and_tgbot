@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Mapped, mapped_column
-from src.database.engine import Base
+from database.engine import Base
 from sqlalchemy.types import VARCHAR
 
 

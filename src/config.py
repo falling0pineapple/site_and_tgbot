@@ -1,9 +1,9 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from pydantic import SecretStr
+
 
 
 class Settings(BaseSettings):
-    BOT_TOKEN: SecretStr
+    BOT_TOKEN: str
     ADMINS_ID: list
     CHANEL_ID: int
     URL_FIRST_PART: str
