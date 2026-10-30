@@ -18,7 +18,8 @@ async def send_suggested_post_TG(callback):
     
 @router.callback_query(F.data.startswith("approve_"))
 async def post_post_in_chanel(callback):
-    post_id = callback.data.replace('approve_', '')
+    print(f'CALLBACK DATA:: :: {callback.data}')
+    post_id = int(callback.data.replace('approve_', ''))
     suggested_post = get_certain_suggested_post_query(post_id)
     await callback.bot.send_message(
         chat_id=settings.CHANEL_ID,
@@ -34,9 +35,9 @@ async def post_post_in_chanel(callback):
         
     
     
-@router.callback_query(F.data.startswith("disapprove_"))
+@router.callback_query(F.data.startswith("disapprove_")) #work
 async def dissaprove_post_TG(callback):
-    post_id = callback.data.replace("disaprove_", '')
+    post_id = int(callback.data.replace("disapprove_", ''))
     if delete_post_query(post_id):
         current_user_id = callback.from_user.id
         suggested_post = get_suggested_posts_SERVICE(current_user_id)
