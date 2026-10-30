@@ -35,7 +35,7 @@ async def post_post_in_chanel(callback):
         
     
     
-@router.callback_query(F.data.startswith("disapprove_")) #work
+@router.callback_query(F.data.startswith("disapprove_"))
 async def dissaprove_post_TG(callback):
     post_id = int(callback.data.replace("disapprove_", ''))
     if delete_post_query(post_id):
@@ -45,6 +45,3 @@ async def dissaprove_post_TG(callback):
             await callback.message.answer(f"{suggested_post["description"]}\n\nAuthor: {suggested_post["author"]}",reply_markup=approve_disapprove_kb(suggested_post['post_id']))
     else:
             await callback.message.answer("PIPWRONG")
-    
-    
-    #доделать approve часть

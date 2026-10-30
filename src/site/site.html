@@ -4,37 +4,13 @@
     <head>
         <meta charset="utf-8">
         <title>Send Post</title>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <h1>Write a post</h1>
+        <h1 id="SiteTitle" class="title_site">Write a post</h1>
         <textarea id="PostTitle" placeholder="Write a post (max 100 symbols)"></textarea><br>
-        <input id="PostAuthor" placeholder="Author"><br>
-        <button id="SendPostButton">Send post</button>
+        <input id="PostAuthor" placeholder="Author" class="author-input"><br>
+        <button id="SendPostButton" class="send-button">Send post</button>
+    <script src="script.js"></script>
     </body>
-
-<script>
-    const send_button = document.getElementById("SendPostButton")
-    const post_title = document.getElementById("PostTitle")
-    const post_author = document.getElementById("PostAuthor")
-
-    send_button.addEventListener("click", async () => {
-
-    const response = await fetch("http://127.0.0.1:8000/push/post/in/tg/chanel", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            title: post_title.value,
-            author: post_author.value
-        })
-    });
-
-    const data = await response.json();
-
-    console.log(data);
-});
-
-
-</script>
 </html>
