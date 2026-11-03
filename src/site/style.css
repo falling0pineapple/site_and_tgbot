@@ -2,3 +2,9 @@
     color: blue;
     size: 30px;
 }
+
+.send-button {
+    border-color: aquamarine;
+    size: 20px;
+    flood-color: blue;
+}

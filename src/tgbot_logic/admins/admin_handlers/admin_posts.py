@@ -29,9 +29,13 @@ async def post_post_in_chanel(callback):
             current_user_id = callback.from_user.id
             suggested_postt = get_suggested_posts_SERVICE(current_user_id)
             if suggested_postt is not None:
-                await callback.message.answer(f"{suggested_postt["description"]}\n\nAuthor: {suggested_postt["author"]}",reply_markup=approve_disapprove_kb(suggested_postt['post_id']))
+                await callback.message.edit_text(f"{suggested_postt["description"]}\n\nAuthor: {suggested_postt["author"]}",reply_markup=approve_disapprove_kb(suggested_postt['post_id']))
+            elif suggested_postt == []:
+                await callback.message.edit_text("There are no posts")
+            else:
+                await callback.message.answer('pipiwrong')
     else:
-        await callback.message.answer("PIPWRONG")
+        await callback.message.edit_text("PIPWRONG")
         
     
     
@@ -42,6 +46,10 @@ async def dissaprove_post_TG(callback):
         current_user_id = callback.from_user.id
         suggested_post = get_suggested_posts_SERVICE(current_user_id)
         if suggested_post is not None:
-            await callback.message.answer(f"{suggested_post["description"]}\n\nAuthor: {suggested_post["author"]}",reply_markup=approve_disapprove_kb(suggested_post['post_id']))
+            await callback.message.edit_text(f"{suggested_post["description"]}\n\nAuthor: {suggested_post["author"]}",reply_markup=approve_disapprove_kb(suggested_post['post_id']))
+        elif suggested_post == []:
+                await callback.message.edit_text("There are no posts")
+        else:
+            await callback.message.answer('pipiwrong')
     else:
-            await callback.message.answer("PIPWRONG")
+            await callback.message.edit_text("PIPWRONG")

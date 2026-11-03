@@ -5,7 +5,9 @@
 
     send_button.addEventListener("click", async () => {
     if (post_author.value === '') {
-    getElementById("SiteTitle").textContent = "You should write author"}
+    document.getElementById("SiteTitle").textContent = "You should write author"}
+    else if (post_title.value === '') {
+    document.getElementById("SiteTitle").textContent = "Post should not be empty"}
     else {
     const response = await fetch("http://127.0.0.1:8000/push/post/in/tg/chanel", {
 

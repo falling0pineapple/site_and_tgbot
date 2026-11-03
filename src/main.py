@@ -14,7 +14,7 @@ app.include_router(api_router)
 
 async def main_func():
     create_base()
-    uvi_conf = uvicorn.Config(app, host="127.0.0.1", port=8000)
+    uvi_conf = uvicorn.Config(app, host="127.0.0.1", port=8000)#вынести потом значения в .env
     uvi_serv = uvicorn.Server(uvi_conf)
     await asyncio.gather(
         dp.start_polling(bot),
@@ -25,4 +25,4 @@ if __name__ == "__main__":
     try:
         asyncio.run(main_func())
     except KeyboardInterrupt:
-        print('Бот просто отключился')
+        print('Бот просто отключился') #сделать потом lifespan
