@@ -1,5 +1,5 @@
 .title_site {
-    color: blue;
+    color: rgb(255, 0, 238);
     size: 30px;
 }
 
@@ -7,4 +7,9 @@
     border-color: aquamarine;
     size: 20px;
     flood-color: blue;
+}
+
+body {
+    background-image: url("https://heroes.thelazy.net/images/f/f0/Inferno-in_%28HotA%29.png");
+    background-position: center;
 }
