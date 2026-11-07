@@ -25,4 +25,4 @@ if __name__ == "__main__":
     try:
         asyncio.run(main_func())
     except KeyboardInterrupt:
-        print('Бот просто отключился') #сделать потом lifespan
+        print('Бот просто отключился') #сделать потом lifespan, попробовать добавлять файлы exceptions
