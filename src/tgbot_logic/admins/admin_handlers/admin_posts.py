@@ -2,7 +2,6 @@ from aiogram import Router, F
 from tgbot_logic.admins.admin_services import get_suggested_posts_SERVICE
 from tgbot_logic.admins.admin_keyboards.approve_dissapprove_keyboard import approve_disapprove_kb
 from database.queries.archive_and_delete_post import delete_and_archive_post
-from database.queries.delete_post import delete_post_query
 from config import settings
 from database.queries.get_post_to_post import get_certain_suggested_post_query
 router = Router()
@@ -28,7 +27,8 @@ async def post_post_in_chanel(callback):
         chat_id=settings.CHANEL_ID,
         text=suggested_post["description"]
         )
-    if delete_and_archive_post(post_id):
+    in_chanel = True
+    if delete_and_archive_post(post_id, in_chanel):
             current_user_id = callback.from_user.id
             suggested_postt = get_suggested_posts_SERVICE(current_user_id)
             if suggested_postt is not None:
@@ -45,7 +45,8 @@ async def post_post_in_chanel(callback):
 @router.callback_query(F.data.startswith("disapprove_"))
 async def dissaprove_post_TG(callback):
     post_id = int(callback.data.replace("disapprove_", ''))
-    if delete_post_query(post_id):
+    in_chanel = False
+    if delete_and_archive_post(post_id, in_chanel):
         current_user_id = callback.from_user.id
         suggested_post = get_suggested_posts_SERVICE(current_user_id)
         if suggested_post is not None:

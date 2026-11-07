@@ -19,4 +19,5 @@ class SuggestedPostArchiveORM(Base):
     post_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=False)
     title: Mapped[str] = mapped_column(VARCHAR(100))
     author: Mapped[str | None] = mapped_column()
+    in_chanel: Mapped[bool] = mapped_column()
     deleted_at: Mapped[datetime]  = mapped_column(DateTime(timezone=True), server_default=func.now())

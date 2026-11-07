@@ -3,7 +3,7 @@ from database.models import SuggestedPostArchiveORM, SuggestedPostORM
 
 
 
-def delete_and_archive_post(post_id: int):
+def delete_and_archive_post(post_id: int, in_chanel: bool):
     with session_factory() as session:
         post = session.get(SuggestedPostORM, post_id)
         if post is None:
@@ -11,7 +11,9 @@ def delete_and_archive_post(post_id: int):
         session.add(SuggestedPostArchiveORM(
             post_id=post.post_id,
             title=post.title, 
-            author=post.author)
+            author=post.author,
+            in_chanel=in_chanel
+                    )
                     )
         session.delete(post)
         session.commit()
